@@ -1,1 +1,1 @@
-# Web-Scrapping
+Here, you will find codes used to scrape different websites. Included in this repository are datasets from all the websites scrapped.
