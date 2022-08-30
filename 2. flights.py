@@ -1,17 +1,37 @@
 import requests
 from bs4 import BeautifulSoup
 
-for x in range(1,19):
-    url = 'https://www.pararius.com/apartments/amsterdam?ac='
-    source = requests.get(url + str(x))
-    soup = BeautifulSoup(source.text, 'lxml')
-    apartments = soup.find('ul', class_ = 'search-list').find_all('section')
-        
-    for apartment in apartments:
-        name = apartment.find('a', class_ = 'listing-search-item__link--title').text
-        price = apartment.find('div', class_ = 'listing-search-item__price').text
-        location = apartment.find('div', class_ = 'listing-search-item__sub-title').text
-        area = apartment.find('li', class_ = 'illustrated-features__item--surface-area').text
-        rooms = apartment.find('li', class_ = 'illustrated-features__item--number-of-rooms').text
+#for x in range(1,19):
+url = 'https://www.pararius.com/apartments/amsterdam'
+source = requests.get(url) # + str(x))
+soup = BeautifulSoup(source.text, 'lxml')
+apartments = soup.find('ul', class_ = 'search-list').find_all('section')
 
-print(name, price, location, area, rooms)
+for apartment in apartments:
+    name = apartment.find('h2', class_ = 'listing-search-item__title').a.text.replace(' ', '')
+    price = apartment.find('div', class_ = 'listing-search-item__price').text.replace(' ','')
+    location = apartment.find('div', class_ = 'listing-search-item__sub-title').text.replace(' ', '')
+    area = apartment.find('li', class_ = 'illustrated-features__item--surface-area').text.replace(' ', '')
+    rooms = apartment.find('li', class_ = 'illustrated-features__item--number-of-rooms').text.replace(' ', '')
+    link = apartment.h2.a['href']
+
+    print({name}, {price}, {location}, {area}, {rooms}, {link})
+
+
+
+
+'''
+homes =  []
+homes.append(apartment)
+
+print({name}, {price}, {location}, {area}, {rooms}, {link})
+
+print('')
+
+
+price = apartment.find('div', class_ = 'listing-search-item__price').text.replace(' ','')
+location = apartment.find('div', class_ = 'listing-search-item__sub-title').text.replace(' ', '')
+area = apartment.find('li', class_ = 'illustrated-features__item--surface-area').text.replace(' ', '')
+rooms = apartment.find('li', class_ = 'illustrated-features__item--number-of-rooms').text.replace(' ', '')
+link = apartment.section.h2.a['href']
+'''
