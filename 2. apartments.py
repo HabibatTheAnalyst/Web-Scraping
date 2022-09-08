@@ -1,18 +1,31 @@
+from wsgiref import headers
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
 
-for x in range(1,19):
-    url = 'https://www.pararius.com/apartments/amsterdam/page-2/sort-price-low'
-    source = requests.get(url) # + str(x))
+headers = {'User-Agent':  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36'}
+
+prettylist = []
+
+def getPretty(tag, page):
+    url = f'https://www.prettylittlething.com/clothing/dresses/{tag}.html?id=357&page={page}&ajax=0'
+    source = requests.get(url, headers = headers)
     soup = BeautifulSoup(source.text, 'lxml')
-    apartments = soup.find('ul', class_ = 'search-list').find_all('section')
+    dress = soup.find_all('div', class_ = 'category-product')
+    for item in dress:
+        tag = tag
+        title = item.find('h2', class_ = 'product-title').text.strip()
+        price = item.find('span', class_ = 'price').text.strip()
+        link = item.find('a', class_ = 'product-url')['href']
 
-    for apartment in apartments:
-        name = apartment.find('h2', class_ = 'listing-search-item__title').a.text.replace(' ', '')
-        price = apartment.find('div', class_ = 'listing-search-item__price').text.replace(' ','')
-        location = apartment.find('div', class_ = 'listing-search-item__sub-title').text.replace(' ', '')
-        area = apartment.find('li', class_ = 'illustrated-features__item--surface-area').text.replace(' ', '')
-        rooms = apartment.find('li', class_ = 'illustrated-features__item--number-of-rooms').text.replace(' ', '')
-        link = apartment.h2.a['href']
+        pretty = {'tag': tag, 'title': title, 'price': price, 'link': link}
+        prettylist.append(pretty)
+    return
 
-        print({name}, {price}, {location}, {area}, {rooms}, {link})
+for x in range(1,3):
+    getPretty('denim-dresses', x)
+    getPretty('mini-dresses', x)
+    
+df = pd.DataFrame(prettylist)
+df.to_excel('PrettyLittleThings.xlsx')
+print('Finish')
