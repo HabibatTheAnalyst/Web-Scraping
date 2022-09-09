@@ -1,15 +1,20 @@
 import requests
 from bs4 import BeautifulSoup
 
-#for x in range(1,30):
-url = 'https://www.brittany-ferries.co.uk/holidays/search?vt=0&s=ASC&p='
-source = requests.get(url) # + str(x))
-soup = BeautifulSoup(source.text, 'lxml')
-homes = soup.find('section', class_ = 'ng-star-inserted').find_all('dd-product-card')
+headers = {'User-Agent':  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36'}
 
-print(len(homes))
-'''
-for home in homes:
-    name = home.find('_ngcontent-serverapp-c290', class_ = 'ng-star-inserted')
-    print(name)
-'''
+url = 'https://twitter.com/search?q=%22Irish%20Twitter%22&src=trend_click&vertical=trends'
+source = requests.get(url, headers = headers)
+soup = BeautifulSoup(source.text, 'lxml')
+tweets = soup.find_all('div', class_ = 'css-1dbjc4n')
+
+for tweet in tweets:
+        name = tweet.find('a', class_ = 'css-4rbku5')['href']
+
+        print(name)
+
+
+
+        
+        #price = item.find('span', class_ = 'price').text.strip()
+        #link = item.find('a', class_ = 'product-url')['href']
