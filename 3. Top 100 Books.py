@@ -20,5 +20,5 @@ for book in books:
 
 time.sleep(5)
 df = pd.DataFrame(booklist)
-df.to_excel('Top 100 Books', index = False)
+df.to_excel('Top 100 Books.xlsx', index = False)
 print('Finish')
