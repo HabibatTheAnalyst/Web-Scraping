@@ -18,37 +18,7 @@ for book in books:
     list = {'title': title}
     booklist.append(list)
 
-<<<<<<< HEAD
-time.sleep(5)
-df = pd.DataFrame(booklist)
-print(df)
-
-
-''''
-for book in books:
-    title = book.find('li').a.text
-    
-    print(title)
-
-
-EXPLORE AFRICA
-
-        
-        #price = item.find('span', class_ = 'price').text.strip()
-        #link = item.find('a', class_ = 'product-url')['href']
-
-'''
-=======
-<<<<<<<< HEAD:3. holiday homes.py
 time.sleep(5)
 df = pd.DataFrame(booklist)
 df.to_excel('Top 100 Books', index = False)
 print('Finish')
-========
-
-
-        
-        #price = item.find('span', class_ = 'price').text.strip()
-        #link = item.find('a', class_ = 'product-url')['href']
->>>>>>>> 001893d5f2038858faf344b92fd3cd37ca99e045:3. Top 100 Books.py
->>>>>>> 001893d5f2038858faf344b92fd3cd37ca99e045
