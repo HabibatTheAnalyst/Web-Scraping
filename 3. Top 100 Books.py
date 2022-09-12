@@ -20,5 +20,20 @@ for book in books:
 
 time.sleep(5)
 df = pd.DataFrame(booklist)
-df.to_excel('Top 100 Books', index = False)
-print('Finish')
+print(df)
+
+
+''''
+for book in books:
+    title = book.find('li').a.text
+    
+    print(title)
+
+
+EXPLORE AFRICA
+
+        
+        #price = item.find('span', class_ = 'price').text.strip()
+        #link = item.find('a', class_ = 'product-url')['href']
+
+'''
