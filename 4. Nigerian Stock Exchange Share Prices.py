@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -22,3 +23,6 @@ time.sleep(5)
 df = pd.DataFrame(booklist)
 df.to_excel('Top 100 Books.xlsx', index = False)
 print('Finish')
+=======
+
+>>>>>>> b86d4cd4a3c51f476232bc83e08b9360373b9a3e
