@@ -13,6 +13,8 @@ shares = soup.find('tbody', class_ = 'wpv-loop').find_all('tr')
 # Nigerian Stock Exchange Share Prices - AfricanFinancials
 
 for stock in shares:
-    company = stock.find('td', class_ = 'dtr-control')
+    company = stock.get('td')
+    #price = stock.find('td', class_ = 'numeric').text
+    #prcntchange = stock.find('td', class_ = 'sorting_1')
 
-print(company)
+    print(company)
