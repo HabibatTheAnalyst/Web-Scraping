@@ -1,7 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
 
 headers = {'User-Agent':  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36'}
+
+novellist = []
 
 url = 'https://www.webnovel.com/search?keywords=ash_knight17'
 source = requests.get(url, headers = headers)
@@ -14,6 +17,12 @@ for novel in novels:
         ratings = novel.find('p', class_ = 'g_star_num').small.text
     except AttributeError:
         ratings = None
-    print(ratings)
+
+    list = {'title': title, 'ratings': ratings}
+    novellist.append(list)
+
+df = pd.DataFrame(novellist)
+df.to_excel('webnovel.xlsx', index = False)
+print('Finish')
         
 #print(soup.title.text)
