@@ -17,12 +17,14 @@ for novel in novels:
         ratings = novel.find('p', class_ = 'g_star_num').small.text
     except AttributeError:
         ratings = None
+    link = novel.find('a', class_ = 'c_000')['href']
 
-    list = {'title': title, 'ratings': ratings}
+
+    list = {'title': title, 'ratings': ratings, 'link' : link}
     novellist.append(list)
 
 df = pd.DataFrame(novellist)
-df.to_excel('webnovel.xlsx', index = False)
+df.to_excel('webnovel1.xlsx', index = False)
 print('Finish')
         
 #print(soup.title.text)
