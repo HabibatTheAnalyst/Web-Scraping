@@ -1,9 +1,9 @@
 from urllib import request
-from googleapiclient import build
+import googleapiclient.recovery
 
 api_key = 'AIzaSyDnT1VLyzSJy3jNHQzprY6HwJJD1gK2WGY'
 video_id = 'a0zrnEnUiYo'
-youtube = build('youtube', 'v3', developer_key = api_key)
+youtube = googleapiclient.build('youtube', 'v3', developer_key = api_key)
 
 # function to extract video details
 def get_video_comments(youtube, video_id):
